@@ -1,5 +1,9 @@
 #!/bin/bash
-sudo apt-get install -y apt-transport-https software-properties-common
-sudo wget -q -O /usr/share/keyrings/grafana.key https://apt.grafana.com/gpg.key
-echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+sudo apt-get install -y adduser libfontconfig1 musl
+wget https://dl.grafana.com/enterprise/release/grafana-enterprise_11.2.2_amd64.deb
+sudo dpkg -i grafana-enterprise_11.2.2_amd64.deb
 sudo apt-get update
+sudo systemctl start grafana-server
+sudo systemctl enable grafana-server
+sudo systemctl status grafana-server.service
+# mở cổng 3000: sudo ufw allow 3000
